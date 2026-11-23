@@ -2,6 +2,7 @@
 import { useState } from "react";
 import type { Task } from "../types/task";
 import TaskForm from "./TaskForm";
+import TaskList from "./TaskList";
 
 interface DashboardProps {
     onLogout: () => void;
@@ -37,8 +38,6 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
                 {/* Dashboard Content */}
                 <div className="max-w-xl mx-auto">
 
-                    <TaskForm onAddTask={handleAddTask} />
-
                     {/* Header */}
                     <div className="flex items-center justify-between mb-5">
 
@@ -55,6 +54,13 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
                         </button>
 
                     </div>
+
+                     {/* Create Task Form */}
+                    <TaskForm onAddTask={handleAddTask} />
+
+                     {/* Display Tasks */}
+                    <TaskList tasks={tasks} />
+
 
                 </div>
 
