@@ -11,6 +11,7 @@ interface DashboardProps {
 const Dashboard = ({ onLogout }: DashboardProps) => {
 
     const [tasks, setTasks] = useState<Task[]>([]);
+    const [editingTask, setEditingTask] = useState<Task | null>(null);
 
     const handleAddTask = (
             newTask: Omit<Task, "id" | "completed">
@@ -22,6 +23,26 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
             };
 
             setTasks((prevTasks) => [...prevTasks, task]);
+        };
+    
+    const handleToggleTask = (id: number) => {
+            setTasks((prevTasks) =>
+                prevTasks.map((task) =>
+                    task.id === id
+                        ? { ...task, completed: !task.completed }
+                        : task
+                )
+            );
+        };
+
+    const handleDeleteTask = (id: number) => {
+            setTasks((prevTasks) =>
+                prevTasks.filter((task) => task.id !== id)
+            );
+        };
+    
+    const handleEditTask = (task: Task) => {
+            setEditingTask(task);
         };
 
     return (
@@ -59,8 +80,13 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
                     <TaskForm onAddTask={handleAddTask} />
 
                      {/* Display Tasks */}
-                    <TaskList tasks={tasks} />
-
+                    <TaskList 
+                        tasks={tasks}
+                        onToggleTask={handleToggleTask}
+                        onDeleteTask={handleDeleteTask}
+                        onEditTask={handleEditTask} 
+                    
+                    />
 
                 </div>
 
