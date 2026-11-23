@@ -1,9 +1,28 @@
 
+import { useState } from "react";
+import type { Task } from "../types/task";
+import TaskForm from "./TaskForm";
+
 interface DashboardProps {
     onLogout: () => void;
 }
 
 const Dashboard = ({ onLogout }: DashboardProps) => {
+
+    const [tasks, setTasks] = useState<Task[]>([]);
+
+    const handleAddTask = (
+            newTask: Omit<Task, "id" | "completed">
+        ) => {
+            const task: Task = {
+                id: Date.now(),
+                ...newTask,
+                completed: false
+            };
+
+            setTasks((prevTasks) => [...prevTasks, task]);
+        };
+
     return (
         <div className="min-h-screen bg-[#68c568] px-4 py-8">
 
@@ -13,10 +32,12 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
             </h1>
 
             {/* Main Dashboard Container */}
-            <div className="w-full max-w-5xl min-h-[560px] mx-auto bg-white rounded-3xl p-6 sm:p-10">
+            <div className="w-full max-w-5xl min-h-[560px] mx-auto bg-white rounded-3xl p-6 sm:p-10">  
 
                 {/* Dashboard Content */}
                 <div className="max-w-xl mx-auto">
+
+                    <TaskForm onAddTask={handleAddTask} />
 
                     {/* Header */}
                     <div className="flex items-center justify-between mb-5">
