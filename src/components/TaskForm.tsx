@@ -14,7 +14,7 @@ const TaskForm = ({ onAddTask }: TaskFormProps) => {
     const [priority, setPriority] = useState<Priority>("medium");
 
     return (
-        <div>
+        
            <form
                 onSubmit={(e) => {
                     e.preventDefault();
@@ -87,7 +87,7 @@ const TaskForm = ({ onAddTask }: TaskFormProps) => {
                     Add Task
                 </button>
             </form>
-        </div>
+        
     );
 };
 
