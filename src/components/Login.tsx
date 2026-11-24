@@ -8,6 +8,7 @@ import { useState } from "react";
 
 interface LoginProps {
     onRegister: () => void;
+    onLogin: () => void;
 }
 
 type FormData = {
@@ -15,16 +16,17 @@ type FormData = {
     password: string;
 }
 
-const Login = ({ onRegister }: LoginProps) => {
+const Login = ({ onRegister, onLogin  }: LoginProps) => {
 
     const [formData, setFormData] = useState<FormData>({
         email: "",
         password: ""
     });
 
-    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(formData);
+        onLogin();
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
