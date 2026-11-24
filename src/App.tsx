@@ -3,20 +3,38 @@ import { useState } from "react";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
+
+type View = "login" | "register" | "dashboard";
 
 function App() {
-    const [isLogin, setIsLogin] = useState<boolean>(true);
+    const [currentView, setCurrentView] = useState<View>("login");
 
     return (
-        <div className="min-h-screen bg-white flex items-center justify-center px-4">
-
-            {isLogin ? (
-                <Login onRegister={() => setIsLogin(false)} />
-            ) : (
-                <Register onLogin={() => setIsLogin(true)} />
+        <>
+            {currentView === "login" && (
+                <div className="min-h-screen bg-white flex items-center justify-center px-4">
+                    <Login
+                        onRegister={() => setCurrentView("register")}
+                        onLogin={() => setCurrentView("dashboard")}
+                    />
+                </div>
             )}
 
-        </div>
+            {currentView === "register" && (
+                <div className="min-h-screen bg-white flex items-center justify-center px-4">
+                    <Register
+                        onLogin={() => setCurrentView("login")}
+                    />
+                </div>
+            )}
+
+            {currentView === "dashboard" && (
+                <Dashboard
+                    onLogout={() => setCurrentView("login")}
+                />
+            )}
+        </>
     );
 }
 
