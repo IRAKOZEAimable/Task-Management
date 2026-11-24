@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { Task } from "../types/task";
 import TaskForm from "./TaskForm";
 import TaskList from "./TaskList";
+import EditTaskForm from "./EditTaskForm";
 
 interface DashboardProps {
     onLogout: () => void;
@@ -44,6 +45,20 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
     const handleEditTask = (task: Task) => {
             setEditingTask(task);
         };
+
+    const handleSaveTask = (updatedTask: Task) => {
+        setTasks((prevTasks) =>
+            prevTasks.map((task) =>
+                task.id === updatedTask.id ? updatedTask : task
+            )
+        );
+
+        setEditingTask(null);
+    };
+
+    const handleCancelEdit = () => {
+        setEditingTask(null);
+    };
 
     return (
         <div className="min-h-screen bg-[#68c568] px-4 py-8">
@@ -87,6 +102,15 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
                         onEditTask={handleEditTask} 
                     
                     />
+
+                    {editingTask && (
+                        <EditTaskForm
+                            key={editingTask.id}
+                            task={editingTask}
+                            onSave={handleSaveTask}
+                            onCancel={handleCancelEdit}
+                        />
+                    )}
 
                 </div>
 
