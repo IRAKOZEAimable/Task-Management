@@ -61,7 +61,7 @@ const Dashboard = ({ onLogout }: DashboardProps) => {
     };
 
     return (
-        <div className="min-h-screen bg-[#68c568] px-4 py-8">
+        <div className="min-h-screen  bg-indigo-300 px-4 py-8">
 
             {/* Dashboard Title */}
             <h1 className="text-4xl sm:text-6xl font-bold text-white text-center mb-8">

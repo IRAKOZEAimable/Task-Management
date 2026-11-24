@@ -43,7 +43,7 @@ const TaskForm = ({ onAddTask }: TaskFormProps) => {
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="Enter task title"
                         required
-                        className="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-green-500"
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-300"
                     />
                 </div>
 
@@ -58,7 +58,7 @@ const TaskForm = ({ onAddTask }: TaskFormProps) => {
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="Enter task description"
                         rows={3}
-                        className="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-green-500"
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-300"
                     />
                 </div>
 
@@ -71,7 +71,7 @@ const TaskForm = ({ onAddTask }: TaskFormProps) => {
                     <select
                         value={priority}
                         onChange={(e) => setPriority(e.target.value as Priority)}
-                        className="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-green-500"
+                        className="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-indigo-300"
                     >
                         <option value="low">Low</option>
                         <option value="medium">Medium</option>
@@ -82,7 +82,7 @@ const TaskForm = ({ onAddTask }: TaskFormProps) => {
                 {/* Add Task Button */}
                 <button
                     type="submit"
-                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-lg transition"
+                    className="w-full bg-indigo-300 hover:bg-gray-500 text-black font-bold py-2 rounded-lg transition"
                 >
                     Add Task
                 </button>
